@@ -1,0 +1,533 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Math Rahmah - Pembagian Bilangan Cacah Kelas 4</title>
+  <style>
+    :root {
+      --ink: #183047;
+      --muted: #607289;
+      --line: #d9e4ed;
+      --paper: #fffdf7;
+      --panel: #ffffff;
+      --green: #138a63;
+      --blue: #2874c7;
+      --yellow: #f5bf2f;
+      --orange: #ef7d35;
+      --red: #db4b4b;
+      --soft-green: #e9f7ef;
+      --soft-blue: #eaf3ff;
+      --soft-yellow: #fff5cf;
+      --soft-orange: #fff0e5;
+      --shadow: 0 18px 42px rgba(37, 67, 100, .13);
+      --radius: 8px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      color: var(--ink);
+      font-family: Arial, Helvetica, sans-serif;
+      background:
+        radial-gradient(circle at 10% 10%, rgba(245, 191, 47, .24), transparent 28%),
+        radial-gradient(circle at 92% 8%, rgba(19, 138, 99, .16), transparent 26%),
+        linear-gradient(135deg, #fffdf7 0%, #eef7ff 100%);
+    }
+    button, input, textarea, select { font: inherit; }
+    button { cursor: pointer; border: 0; }
+    h1, h2, h3, p { margin-top: 0; }
+    h1 { margin-bottom: 10px; font-size: clamp(30px, 4vw, 54px); line-height: 1.04; letter-spacing: 0; }
+    h2 { margin-bottom: 10px; font-size: clamp(22px, 2.4vw, 34px); letter-spacing: 0; }
+    h3 { margin-bottom: 8px; }
+    p { line-height: 1.58; }
+    .shell { width: min(1220px, calc(100% - 24px)); margin: 0 auto; padding: 18px 0 38px; }
+    .topbar { display: flex; align-items: center; justify-content: space-between; gap: 14px; margin-bottom: 14px; }
+    .brand { display: flex; align-items: center; gap: 12px; min-width: 0; }
+    .logo {
+      width: 56px; height: 56px; border-radius: var(--radius); display: grid; place-items: center;
+      color: #fff; font-size: 24px; font-weight: 900; background: linear-gradient(135deg, var(--green), var(--blue));
+      box-shadow: var(--shadow);
+    }
+    .brand small { display: block; color: var(--muted); margin-top: 2px; line-height: 1.3; }
+    .pills { display: flex; justify-content: flex-end; gap: 8px; flex-wrap: wrap; }
+    .pill {
+      display: inline-flex; align-items: center; gap: 7px; padding: 8px 11px; border: 1px solid var(--line);
+      border-radius: 999px; background: rgba(255,255,255,.86); font-size: 13px; font-weight: 700; color: #33445b;
+    }
+    .dot { width: 9px; height: 9px; border-radius: 50%; background: var(--green); }
+
+    .hero {
+      display: grid; grid-template-columns: 1.08fr .92fr; gap: 18px; align-items: stretch;
+      min-height: 430px; margin-bottom: 18px;
+    }
+    .hero-main {
+      border-radius: var(--radius); padding: clamp(22px, 4vw, 42px); background: rgba(255,255,255,.9);
+      border: 1px solid var(--line); box-shadow: var(--shadow); display: flex; flex-direction: column; justify-content: space-between;
+    }
+    .eyebrow { color: var(--green); font-weight: 900; letter-spacing: .08em; text-transform: uppercase; font-size: 13px; }
+    .hero-copy { max-width: 720px; color: #314860; font-size: 17px; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 44px; padding: 11px 15px;
+      border-radius: var(--radius); color: #fff; background: var(--green); font-weight: 800; text-decoration: none;
+      box-shadow: 0 10px 22px rgba(19,138,99,.22);
+    }
+    .btn.secondary { color: var(--ink); background: #fff; border: 1px solid var(--line); box-shadow: none; }
+    .summary-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 18px; }
+    .summary {
+      border: 1px solid var(--line); border-radius: var(--radius); padding: 12px; background: #fffdf8;
+    }
+    .summary b { display: block; font-size: 22px; }
+    .summary span { color: var(--muted); font-size: 13px; font-weight: 700; }
+
+    .visual {
+      border-radius: var(--radius); overflow: hidden; background: #fdf7e3; border: 1px solid var(--line);
+      box-shadow: var(--shadow); padding: 18px; display: grid; gap: 12px; align-content: center;
+    }
+    .division-board {
+      background: #123149; color: #fff; border-radius: var(--radius); padding: 18px; min-height: 220px;
+      display: grid; align-content: center; gap: 14px;
+    }
+    .division-row { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+    .big-number { font-size: clamp(32px, 4vw, 58px); font-weight: 900; letter-spacing: 1px; }
+    .mini-card { background: rgba(255,255,255,.12); border: 1px solid rgba(255,255,255,.2); border-radius: var(--radius); padding: 12px; }
+    .mini-card strong { display: block; margin-bottom: 4px; color: #ffe49a; }
+
+    .tabs {
+      position: sticky; top: 0; z-index: 10; display: flex; gap: 8px; overflow-x: auto; padding: 8px 0 12px;
+      background: linear-gradient(180deg, rgba(246,250,255,.97), rgba(246,250,255,.8));
+    }
+    .tab {
+      flex: 0 0 auto; padding: 10px 13px; border-radius: 999px; background: #fff; color: #33445b;
+      border: 1px solid var(--line); font-weight: 800;
+    }
+    .tab.active { background: var(--blue); color: #fff; border-color: var(--blue); }
+
+    .section { display: none; }
+    .section.active { display: block; }
+    .panel {
+      background: rgba(255,255,255,.92); border: 1px solid var(--line); border-radius: var(--radius);
+      box-shadow: var(--shadow); padding: clamp(16px, 3vw, 26px); margin-bottom: 16px;
+    }
+    .grid-2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+    .grid-3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+    .card {
+      background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius); padding: 16px;
+    }
+    .card.tint-green { background: var(--soft-green); }
+    .card.tint-blue { background: var(--soft-blue); }
+    .card.tint-yellow { background: var(--soft-yellow); }
+    .card.tint-orange { background: var(--soft-orange); }
+    .list { padding-left: 20px; margin: 10px 0 0; line-height: 1.7; }
+    .tagline { color: var(--muted); font-weight: 700; }
+    .topic-list { display: grid; gap: 10px; }
+    .topic {
+      display: grid; grid-template-columns: 42px 1fr auto; align-items: center; gap: 10px;
+      border: 1px solid var(--line); border-radius: var(--radius); padding: 12px; background: #fff;
+    }
+    .topic-num { width: 42px; height: 42px; border-radius: var(--radius); display: grid; place-items: center; background: var(--soft-blue); color: var(--blue); font-weight: 900; }
+    .topic small { color: var(--muted); font-weight: 700; }
+
+    .lesson-steps { display: grid; gap: 10px; counter-reset: step; }
+    .lesson-step {
+      position: relative; padding: 14px 14px 14px 56px; border: 1px solid var(--line); border-radius: var(--radius); background: #fff;
+    }
+    .lesson-step::before {
+      counter-increment: step; content: counter(step); position: absolute; left: 14px; top: 14px;
+      width: 30px; height: 30px; border-radius: 50%; display: grid; place-items: center; background: var(--green); color: #fff; font-weight: 900;
+    }
+
+    .input-row { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)) auto; gap: 10px; align-items: end; }
+    label { display: block; font-size: 13px; color: var(--muted); font-weight: 800; margin-bottom: 6px; }
+    input, textarea, select {
+      width: 100%; border: 1px solid var(--line); border-radius: var(--radius); padding: 11px 12px; background: #fff; color: var(--ink);
+    }
+    textarea { min-height: 96px; resize: vertical; }
+    .result {
+      margin-top: 12px; border-radius: var(--radius); padding: 14px; background: var(--soft-blue); border: 1px solid #cfe2fa;
+      white-space: pre-wrap; line-height: 1.6;
+    }
+    .quiz-item { border-top: 1px solid var(--line); padding: 16px 0; }
+    .quiz-item:first-child { border-top: 0; padding-top: 0; }
+    .options { display: grid; gap: 8px; margin-top: 10px; }
+    .option {
+      display: flex; gap: 9px; align-items: flex-start; border: 1px solid var(--line); border-radius: var(--radius); padding: 10px; background: #fff;
+    }
+    .feedback { margin-top: 12px; font-weight: 900; }
+    .good { color: var(--green); }
+    .bad { color: var(--red); }
+    .bar-wrap { height: 12px; background: #edf2f7; border-radius: 999px; overflow: hidden; }
+    .bar { height: 100%; width: 0; background: linear-gradient(90deg, var(--orange), var(--green)); transition: width .3s ease; }
+    .rubric-table { width: 100%; border-collapse: collapse; overflow: hidden; border-radius: var(--radius); background: #fff; }
+    .rubric-table th, .rubric-table td { border: 1px solid var(--line); padding: 10px; vertical-align: top; text-align: left; }
+    .rubric-table th { background: #f2f7fb; }
+    .print-area { background: #fff; border: 1px dashed #a6b7c7; border-radius: var(--radius); padding: 16px; }
+    .note { color: var(--muted); font-size: 13px; line-height: 1.55; }
+
+    @media (max-width: 900px) {
+      .hero, .grid-2, .grid-3, .input-row { grid-template-columns: 1fr; }
+      .summary-grid { grid-template-columns: 1fr; }
+      .topbar { align-items: flex-start; flex-direction: column; }
+      .pills { justify-content: flex-start; }
+      .topic { grid-template-columns: 42px 1fr; }
+      .topic .pill { grid-column: 2; justify-self: start; }
+    }
+
+    @media print {
+      body { background: #fff; }
+      .topbar, .hero, .tabs, .no-print, .btn { display: none !important; }
+      .shell { width: 100%; padding: 0; }
+      .section { display: block !important; }
+      .panel { box-shadow: none; border: 0; page-break-inside: avoid; }
+    }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <header class="topbar">
+      <div class="brand">
+        <div class="logo">÷</div>
+        <div>
+          <strong>Math Rahmah</strong>
+          <small>Aplikasi Pembelajaran Matematika Kelas 4 / Fase B</small>
+        </div>
+      </div>
+      <div class="pills">
+        <span class="pill"><span class="dot"></span> SDIT Ar-Rahmah</span>
+        <span class="pill">Semester 1</span>
+        <span class="pill">2 × 40 Menit</span>
+      </div>
+    </header>
+
+    <main class="hero">
+      <section class="hero-main">
+        <div>
+          <div class="eyebrow">Perangkat Ajar Matematika 2025/2026</div>
+          <h1>Pembagian Bilangan Cacah sampai 9.999</h1>
+          <p class="hero-copy">
+            Aplikasi ini dibuat sesuai file perangkat ajar: murid belajar konsep pembagian sebagai invers perkalian,
+            mencoba metode bagi panjang, mengerjakan asesmen awal, menyelesaikan LKPD digital, dan merefleksi hasil belajarnya.
+          </p>
+          <div class="hero-actions">
+            <button class="btn" data-go="materi">Mulai Belajar</button>
+            <button class="btn secondary" data-go="kuis">Kerjakan Kuis</button>
+            <button class="btn secondary" onclick="window.print()">Cetak LKPD/Rubrik</button>
+          </div>
+        </div>
+        <div class="summary-grid">
+          <div class="summary"><b>22</b><span>ATP Matematika</span></div>
+          <div class="summary"><b>5</b><span>Topik Utama</span></div>
+          <div class="summary"><b>3</b><span>TP Pembagian</span></div>
+        </div>
+      </section>
+
+      <aside class="visual" aria-label="Ilustrasi pembagian">
+        <div class="division-board">
+          <div class="division-row">
+            <div>
+              <div class="tagline" style="color:#cbe4ff">Contoh dari materi ajar</div>
+              <div class="big-number">2.496 ÷ 8</div>
+            </div>
+            <div class="big-number">= 312</div>
+          </div>
+          <div class="grid-2">
+            <div class="mini-card"><strong>Cek balik</strong>312 × 8 = 2.496</div>
+            <div class="mini-card"><strong>Langkah</strong>Bagi, kalikan, kurangi, turunkan, ulangi</div>
+          </div>
+        </div>
+        <div class="card tint-yellow">
+          <strong>Nilai belajar:</strong> teliti, jujur menghitung, berani mencoba, dan mampu menjelaskan alasan matematis.
+        </div>
+      </aside>
+    </main>
+
+    <nav class="tabs no-print" aria-label="Navigasi aplikasi">
+      <button class="tab active" data-tab="dashboard">Dashboard</button>
+      <button class="tab" data-tab="materi">Materi</button>
+      <button class="tab" data-tab="simulator">Simulator</button>
+      <button class="tab" data-tab="kuis">Kuis</button>
+      <button class="tab" data-tab="lkpd">LKPD</button>
+      <button class="tab" data-tab="rubrik">Rubrik</button>
+      <button class="tab" data-tab="guru">Mode Guru</button>
+    </nav>
+
+    <section id="dashboard" class="section active">
+      <div class="panel">
+        <h2>Alur Tujuan Pembelajaran</h2>
+        <p class="tagline">Ringkasan ATP dari perangkat ajar Matematika Kelas 4 / Fase B.</p>
+        <div class="topic-list" id="topicList"></div>
+      </div>
+    </section>
+
+    <section id="materi" class="section">
+      <div class="panel">
+        <h2>Materi Pembagian Bilangan Cacah</h2>
+        <div class="grid-2">
+          <article class="card tint-green">
+            <h3>Fakta Dasar</h3>
+            <ul class="list">
+              <li>Pembagian adalah kegiatan membagi sejumlah benda menjadi beberapa bagian yang sama banyak.</li>
+              <li>Simbol pembagian adalah ÷ atau /.</li>
+              <li>Bilangan yang dibagi disebut dividen, pembagi disebut divisor, dan hasilnya disebut kuosien.</li>
+            </ul>
+          </article>
+          <article class="card tint-blue">
+            <h3>Konsep Penting</h3>
+            <ul class="list">
+              <li>Pembagian adalah kebalikan dari perkalian.</li>
+              <li>Jika 4 × 5 = 20, maka 20 ÷ 4 = 5 dan 20 ÷ 5 = 4.</li>
+              <li>Jawaban dicek dengan perkalian balik: hasil × pembagi = bilangan yang dibagi.</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+      <div class="panel">
+        <h2>Langkah Bagi Panjang</h2>
+        <p class="tagline">Contoh sesuai materi: 2.496 ÷ 8.</p>
+        <div class="lesson-steps">
+          <div class="lesson-step"><strong>Bagi.</strong> Ambil 24 karena 2 lebih kecil dari 8. Hasil 24 ÷ 8 = 3.</div>
+          <div class="lesson-step"><strong>Kalikan.</strong> 3 × 8 = 24, tulis 24 di bawah angka 24.</div>
+          <div class="lesson-step"><strong>Kurangi.</strong> 24 - 24 = 0, lalu turunkan angka 9.</div>
+          <div class="lesson-step"><strong>Ulangi.</strong> 9 ÷ 8 = 1 sisa 1, lalu turunkan angka 6 menjadi 16.</div>
+          <div class="lesson-step"><strong>Selesaikan.</strong> 16 ÷ 8 = 2, sehingga hasilnya 312.</div>
+          <div class="lesson-step"><strong>Verifikasi.</strong> 312 × 8 = 2.496, jadi jawaban benar.</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="simulator" class="section">
+      <div class="panel">
+        <h2>Simulator Bagi Panjang</h2>
+        <p class="tagline">Masukkan bilangan sampai 9.999 dan pembagi 2-9. Aplikasi akan menampilkan hasil serta pengecekan perkalian balik.</p>
+        <div class="input-row">
+          <div>
+            <label for="dividend">Bilangan yang dibagi</label>
+            <input id="dividend" type="number" min="1" max="9999" value="2496">
+          </div>
+          <div>
+            <label for="divisor">Pembagi</label>
+            <input id="divisor" type="number" min="2" max="9" value="8">
+          </div>
+          <button class="btn" id="calcBtn">Hitung</button>
+        </div>
+        <div class="result" id="calcResult"></div>
+      </div>
+      <div class="panel">
+        <h2>Latihan Cepat</h2>
+        <div class="grid-3" id="practiceCards"></div>
+      </div>
+    </section>
+
+    <section id="kuis" class="section">
+      <div class="panel">
+        <h2>Asesmen Awal</h2>
+        <p class="tagline">Berisi 5 soal dari lampiran perangkat ajar. Skor otomatis muncul setelah dikirim.</p>
+        <form id="quizForm"></form>
+        <div class="bar-wrap"><div class="bar" id="scoreBar"></div></div>
+        <div class="feedback" id="quizFeedback"></div>
+      </div>
+    </section>
+
+    <section id="lkpd" class="section">
+      <div class="panel print-area">
+        <h2>LKPD Digital</h2>
+        <p><strong>Topik:</strong> Pembagian Bilangan Cacah sampai 9.999 | <strong>Kelas:</strong> 4 / Fase B</p>
+        <div class="grid-2">
+          <div><label>Nama Peserta Didik</label><input placeholder="Tulis nama"></div>
+          <div><label>Kelas / No. Absen</label><input placeholder="Contoh: 4A / 12"></div>
+        </div>
+        <h3>Kegiatan 1: Memahami Masalah</h3>
+        <p>Pak Amir memanen 2.496 kg beras. Ia ingin membagikan beras tersebut secara merata kepada 8 kepala keluarga. Tetangganya menyarankan agar beras dibagi kepada 6 keluarga saja supaya tiap keluarga mendapat lebih banyak.</p>
+        <label>Apa informasi yang diketahui?</label>
+        <textarea></textarea>
+        <label>Apa yang ditanyakan?</label>
+        <textarea></textarea>
+        <label>Menurutmu, apa arti membagi secara merata?</label>
+        <textarea></textarea>
+        <h3>Kegiatan 2: Mengaplikasikan</h3>
+        <div class="grid-2">
+          <div class="card">
+            <strong>Kasus A</strong>
+            <p>2.496 kg beras dibagi kepada 8 keluarga.</p>
+            <label>Hasil dan langkah</label>
+            <textarea placeholder="Tuliskan langkah bagi panjang dan verifikasi"></textarea>
+          </div>
+          <div class="card">
+            <strong>Kasus B</strong>
+            <p>2.496 kg beras dibagi kepada 6 keluarga.</p>
+            <label>Hasil dan langkah</label>
+            <textarea placeholder="Tuliskan langkah bagi panjang dan verifikasi"></textarea>
+          </div>
+        </div>
+        <label>Mana yang lebih adil? Jelaskan alasanmu.</label>
+        <textarea></textarea>
+        <h3>Kegiatan 3: Merefleksi</h3>
+        <p>Temukan kesalahan: hasil teman untuk 3.672 ÷ 6 adalah 613 sisa 4.</p>
+        <label>Apakah benar? Tulis verifikasi dan perbaikan.</label>
+        <textarea></textarea>
+      </div>
+    </section>
+
+    <section id="rubrik" class="section">
+      <div class="panel">
+        <h2>Rubrik Penilaian</h2>
+        <p class="tagline">Diambil dari rubrik sikap, pengetahuan, dan keterampilan dalam perangkat ajar.</p>
+        <div style="overflow:auto">
+          <table class="rubric-table">
+            <thead>
+              <tr><th>Aspek</th><th>Skor 4</th><th>Skor 3</th><th>Skor 2</th><th>Skor 1</th></tr>
+            </thead>
+            <tbody id="rubricRows"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section id="guru" class="section">
+      <div class="panel">
+        <h2>Mode Guru</h2>
+        <div class="grid-3">
+          <div class="card tint-green"><h3>Tujuan 1</h3><p>Murid menjelaskan pembagian sebagai invers perkalian melalui distribusi benda konkret.</p></div>
+          <div class="card tint-blue"><h3>Tujuan 2</h3><p>Murid menyelesaikan pembagian sampai 9.999 menggunakan metode bagi panjang secara sistematis.</p></div>
+          <div class="card tint-yellow"><h3>Tujuan 3</h3><p>Murid mengevaluasi strategi pembagian dan menemukan kesalahan dengan argumen logis.</p></div>
+        </div>
+      </div>
+      <div class="panel">
+        <h2>Skenario Pembelajaran 2 × 40 Menit</h2>
+        <div class="lesson-steps">
+          <div class="lesson-step"><strong>Kegiatan awal 15 menit.</strong> Salam, doa, mood check, apersepsi 120 kurma dibagi 6, motivasi, tujuan, asesmen awal.</div>
+          <div class="lesson-step"><strong>Memahami 21 menit.</strong> Masalah Pak Amir 2.496 kg beras, identifikasi diketahui-ditanya, demonstrasi bagi panjang.</div>
+          <div class="lesson-step"><strong>Mengaplikasikan 24 menit.</strong> Kelompok heterogen menyelesaikan kasus buku tulis dan minyak goreng dengan peran juru hitung, pencatat, pemeriksa, presenter.</div>
+          <div class="lesson-step"><strong>Merefleksi 15 menit.</strong> Presentasi, tanggapan teman, analisis contoh salah, refleksi individu.</div>
+          <div class="lesson-step"><strong>Penutup 5 menit.</strong> Kesimpulan, umpan balik, info pertemuan berikutnya, doa penutup.</div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    const topics = [
+      ['Operasi Hitung Bilangan Cacah', 'Mengidentifikasi, menyelesaikan, menerapkan, menganalisis, mengevaluasi, dan merancang soal cerita operasi hitung.'],
+      ['Pecahan Sederhana', 'Menjelaskan, membandingkan, mengurutkan, menyelesaikan operasi pecahan, dan membuat media visual pecahan.'],
+      ['Bilangan Romawi', 'Membaca, mengonversi, menganalisis pola, dan mendeteksi kesalahan bilangan Romawi I sampai L.'],
+      ['Keliling dan Luas Bangun Datar', 'Menjelaskan, menghitung, menganalisis hubungan, dan merancang denah berdasarkan keliling dan luas.'],
+      ['Data dalam Tabel dan Diagram', 'Membaca, menyajikan, menafsirkan, dan mengevaluasi penyajian data dalam tabel serta diagram batang.']
+    ];
+
+    const quiz = [
+      {q:'Berapakah hasil dari 840 ÷ 7?', options:['110','120','130','140'], answer:'120', explain:'840 ÷ 7 = 120.'},
+      {q:'Suatu bilangan jika dibagi 6 menghasilkan 350. Bilangan tersebut adalah...', options:['1.800','2.000','2.100','2.400'], answer:'2.100', explain:'350 × 6 = 2.100.'},
+      {q:'Pak Budi memiliki 4.500 buku dan membagikannya ke 9 perpustakaan. Setiap perpustakaan menerima...', options:['400','450','500','550'], answer:'500', explain:'4.500 ÷ 9 = 500.'},
+      {q:'Tentukan nilai 6.048 ÷ 8.', options:['746','756','766','776'], answer:'756', explain:'6.048 ÷ 8 = 756.'},
+      {q:'1.260 permen dibagikan kepada 7 anak. Setiap anak menerima...', options:['160','170','180','190'], answer:'180', explain:'1.260 ÷ 7 = 180.'}
+    ];
+
+    const rubrics = [
+      ['Penalaran Kritis', 'Menganalisis masalah mendalam dan berargumen dengan bukti kuat.', 'Sering menganalisis dan memberi argumen, meskipun belum lengkap.', 'Kadang menganalisis, argumen masih dangkal.', 'Jarang menganalisis dan menerima jawaban tanpa bertanya.'],
+      ['Kolaborasi', 'Aktif berkontribusi, mendengarkan, dan membantu kelompok.', 'Aktif berpartisipasi namun kadang kurang memperhatikan pendapat teman.', 'Berpartisipasi jika diminta, inisiatif terbatas.', 'Pasif atau mengganggu kerja kelompok.'],
+      ['Kemandirian', 'Mandiri, mengelola waktu, tidak bergantung pada bantuan.', 'Sebagian besar mandiri dengan sedikit bantuan.', 'Sering memerlukan bantuan.', 'Bergantung penuh pada orang lain.'],
+      ['Pemahaman Konsep', 'Menjelaskan pembagian dan invers perkalian lengkap dengan contoh.', 'Memahami konsep, penjelasan atau contoh belum lengkap.', 'Memahami sebagian konsep, belum jelas hubungan invers.', 'Belum memahami konsep dasar pembagian.'],
+      ['Ketepatan Jawaban', 'Langkah bagi panjang benar, hasil tepat, dan verifikasi benar.', 'Sebagian besar benar dengan kesalahan minor.', 'Ada kesalahan prosedur yang mempengaruhi hasil.', 'Langkah salah secara sistematis.'],
+      ['Presentasi', 'Percaya diri, jelas, sistematis, dan mampu menjawab pertanyaan.', 'Cukup jelas dan mampu menjawab sebagian pertanyaan.', 'Kurang jelas atau kurang percaya diri.', 'Belum mampu menjelaskan proses.']
+    ];
+
+    const practice = [
+      {text:'3.672 ÷ 6', answer:612},
+      {text:'9.135 ÷ 9', answer:1015},
+      {text:'2.496 ÷ 6', answer:416}
+    ];
+
+    function setTab(id) {
+      document.querySelectorAll('.section').forEach(s => s.classList.toggle('active', s.id === id));
+      document.querySelectorAll('.tab').forEach(t => t.classList.toggle('active', t.dataset.tab === id));
+      window.scrollTo({top: 0, behavior: 'smooth'});
+    }
+
+    document.querySelectorAll('.tab').forEach(btn => btn.addEventListener('click', () => setTab(btn.dataset.tab)));
+    document.querySelectorAll('[data-go]').forEach(btn => btn.addEventListener('click', () => setTab(btn.dataset.go)));
+
+    document.getElementById('topicList').innerHTML = topics.map((t, i) => `
+      <div class="topic">
+        <div class="topic-num">${i + 1}</div>
+        <div><strong>${t[0]}</strong><small>${t[1]}</small></div>
+        <span class="pill">ATP ${i === 0 ? '1-6' : i === 1 ? '7-11' : i === 2 ? '12-14' : i === 3 ? '15-18' : '19-22'}</span>
+      </div>
+    `).join('');
+
+    document.getElementById('rubricRows').innerHTML = rubrics.map(r => `
+      <tr>${r.map(c => `<td>${c}</td>`).join('')}</tr>
+    `).join('');
+
+    function calcDivision() {
+      const dividend = Math.max(1, Math.min(9999, Number(document.getElementById('dividend').value || 0)));
+      const divisor = Math.max(2, Math.min(9, Number(document.getElementById('divisor').value || 1)));
+      const quotient = Math.floor(dividend / divisor);
+      const remainder = dividend % divisor;
+      let working = '';
+      let current = 0;
+      String(dividend).split('').forEach((digit, idx) => {
+        current = current * 10 + Number(digit);
+        if (current < divisor && idx < String(dividend).length - 1) {
+          working += `Turunkan ${digit}, nilai sementara ${current} masih lebih kecil dari ${divisor}.\n`;
+        } else {
+          const q = Math.floor(current / divisor);
+          const used = q * divisor;
+          working += `Bagi ${current} ÷ ${divisor} = ${q}, kalikan ${q} × ${divisor} = ${used}, kurangi ${current} - ${used} = ${current - used}.\n`;
+          current = current - used;
+        }
+      });
+      document.getElementById('calcResult').textContent =
+        `${dividend.toLocaleString('id-ID')} ÷ ${divisor} = ${quotient.toLocaleString('id-ID')}${remainder ? ' sisa ' + remainder : ''}\n\n` +
+        working + `\nVerifikasi: ${quotient.toLocaleString('id-ID')} × ${divisor} + ${remainder} = ${(quotient * divisor + remainder).toLocaleString('id-ID')}`;
+    }
+
+    document.getElementById('calcBtn').addEventListener('click', calcDivision);
+    calcDivision();
+
+    document.getElementById('practiceCards').innerHTML = practice.map((p, i) => `
+      <div class="card">
+        <h3>${p.text}</h3>
+        <label>Jawaban</label>
+        <input type="number" data-practice="${i}">
+        <div class="feedback" id="practice-${i}"></div>
+      </div>
+    `).join('');
+    document.querySelectorAll('[data-practice]').forEach(input => {
+      input.addEventListener('input', () => {
+        const idx = Number(input.dataset.practice);
+        const ok = Number(input.value) === practice[idx].answer;
+        document.getElementById(`practice-${idx}`).innerHTML = input.value ? (ok ? '<span class="good">Benar.</span>' : '<span class="bad">Coba cek dengan perkalian balik.</span>') : '';
+      });
+    });
+
+    document.getElementById('quizForm').innerHTML = quiz.map((item, idx) => `
+      <div class="quiz-item">
+        <strong>${idx + 1}. ${item.q}</strong>
+        <div class="options">
+          ${item.options.map(opt => `
+            <label class="option"><input type="radio" name="q${idx}" value="${opt}"> <span>${opt}</span></label>
+          `).join('')}
+        </div>
+      </div>
+    `).join('') + '<button type="submit" class="btn">Kirim Jawaban</button>';
+
+    document.getElementById('quizForm').addEventListener('submit', (event) => {
+      event.preventDefault();
+      let score = 0;
+      quiz.forEach((item, idx) => {
+        const checked = document.querySelector(`input[name="q${idx}"]:checked`);
+        if (checked && checked.value === item.answer) score += 1;
+      });
+      const pct = Math.round((score / quiz.length) * 100);
+      document.getElementById('scoreBar').style.width = pct + '%';
+      document.getElementById('quizFeedback').innerHTML =
+        `Skor kamu: ${score}/${quiz.length} (${pct}). ` +
+        (score === quiz.length ? '<span class="good">Mantap, semua benar.</span>' : '<span class="bad">Periksa lagi soal yang belum yakin, lalu ulangi.</span>') +
+        `<div class="note">${quiz.map((q, i) => `${i + 1}. ${q.explain}`).join('<br>')}</div>`;
+    });
+  </script>
+</body>
+</html>
